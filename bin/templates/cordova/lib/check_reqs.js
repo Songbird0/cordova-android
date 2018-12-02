@@ -31,7 +31,6 @@ var CordovaError = require('cordova-common').CordovaError;
 var superspawn = require('cordova-common').superspawn;
 var android_sdk = require('./android_sdk');
 
-function forgivingWhichSync (cmd) {
     try {
         return fs.realpathSync(shelljs.which(cmd));
     } catch (e) {
@@ -315,10 +314,8 @@ module.exports.check_android = function () {
 
 // TODO: is this actually needed?
 module.exports.getAbsoluteAndroidCmd = function () {
-    var cmd = forgivingWhichSync('android');
-    if (cmd.length === 0) {
-        cmd = forgivingWhichSync('sdkmanager');
-    }
+    var cmd = forgivingWhichSync('sdkmanager');
+    
     if (module.exports.isWindows()) {
         return '"' + cmd + '"';
     }
